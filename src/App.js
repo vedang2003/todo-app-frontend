@@ -17,6 +17,19 @@ function App() {
     setText(text);
     settodoId(_id);
   }
+  const handleAddOrUpdate = () => {
+    if (update) {
+      updateToDo(todoId, text, setToDo, setText, setUpdate);
+    } else {
+      addToDo(text, setText, setToDo);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleAddOrUpdate();
+    }
+  };
 
   return (
     <div className="App">
@@ -28,6 +41,7 @@ function App() {
             placeholder="Add ToDos.. "
             value={text}
             onChange={(e) => setText(e.target.value)}
+            onKeyDown={handleKeyPress}
           />
           <div
             className="add"
